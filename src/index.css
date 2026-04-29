@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 30% 98%;
+    --foreground: 0 0% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 17%;
+    --primary: 350 40% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 38 45% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 30 20% 94%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 30 20% 94%;
+    --accent-foreground: 0 0% 17%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 350 40% 58%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .noue-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-noue-rose text-white font-semibold py-4 px-8 rounded-full
+      uppercase tracking-widest text-sm transition-all duration-200
+      hover:bg-noue-rose-dark active:scale-95 shadow-md hover:shadow-lg;
+  }
+
+  .btn-gold {
+    @apply bg-noue-gold text-white font-semibold py-4 px-8 rounded-full
+      uppercase tracking-widest text-sm transition-all duration-200
+      hover:bg-amber-600 active:scale-95 shadow-md hover:shadow-lg;
+  }
+
+  .tag-discount {
+    @apply bg-noue-rose text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wide;
+  }
+
+  .price-original {
+    @apply text-muted-foreground line-through text-sm;
+  }
+
+  .price-current {
+    @apply text-noue-rose font-bold text-2xl;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl text-noue-charcoal tracking-tight;
+  }
+}
