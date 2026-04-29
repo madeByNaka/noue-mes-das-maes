@@ -51,20 +51,20 @@ const config: Config = {
         },
         // Nouê brand colors
         noue: {
-          rose: '#C8596A',
-          'rose-light': '#F2D5D9',
-          'rose-dark': '#9E3447',
+          rose: '#00a341',
+          'rose-light': '#d0f2e0',
+          'rose-dark': '#007a30',
           gold: '#C9A96E',
           'gold-light': '#F0E4CC',
-          cream: '#FAF6F1',
-          'cream-dark': '#F0E8DF',
+          cream: '#f2faf5',
+          'cream-dark': '#e0f3e8',
           charcoal: '#2C2C2C',
           'charcoal-light': '#4A4A4A',
         },
       },
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Satoshi', 'system-ui', 'sans-serif'],
+        sans: ['Satoshi', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
