@@ -1,6 +1,7 @@
 import { ShoppingCart, Star } from 'lucide-react'
 import { useState } from 'react'
-import { PRODUCTS } from '@/data/products'
+import { KITS_DESTAQUE, PRODUCTS_MAIS_VENDIDOS } from '@/data/products'
+import type { Product } from '@/data/products'
 import { useCart } from '@/context/CartContext'
 import { calcDiscount, formatPrice } from '@/lib/utils'
 import { cn } from '@/lib/utils'
@@ -21,7 +22,7 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
-function ProductCard({ product }: { product: (typeof PRODUCTS)[0] }) {
+function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart()
   const [adding, setAdding] = useState(false)
   const discount = calcDiscount(product.originalPrice, product.price)
@@ -58,7 +59,7 @@ function ProductCard({ product }: { product: (typeof PRODUCTS)[0] }) {
       {/* Content */}
       <div className="p-4 flex flex-col flex-1 gap-3">
         <div>
-          <h3 className="font-serif text-noue-charcoal text-base leading-snug font-semibold line-clamp-2">
+          <h3 className="font-sans text-noue-charcoal text-base leading-snug font-semibold line-clamp-2">
             {product.name}
           </h3>
           <p className="text-muted-foreground text-xs mt-1 line-clamp-2">{product.description}</p>
@@ -68,7 +69,7 @@ function ProductCard({ product }: { product: (typeof PRODUCTS)[0] }) {
         <ul className="space-y-1">
           {product.highlights.map((h) => (
             <li key={h} className="flex items-start gap-1.5 text-xs text-noue-charcoal-light">
-              <span className="text-noue-gold font-bold mt-0.5">→</span>
+              <span className="text-noue-rose font-bold mt-0.5">→</span>
               {h}
             </li>
           ))}
@@ -97,7 +98,7 @@ function ProductCard({ product }: { product: (typeof PRODUCTS)[0] }) {
           disabled={adding}
           className={cn(
             'btn-primary w-full flex items-center justify-center gap-2 py-3 text-sm',
-            adding && 'bg-green-600 hover:bg-green-600 cursor-default',
+            adding && 'bg-green-700 hover:bg-green-700 cursor-default',
           )}
         >
           {adding ? (
@@ -114,26 +115,57 @@ function ProductCard({ product }: { product: (typeof PRODUCTS)[0] }) {
   )
 }
 
+function SectionHeader({
+  tag,
+  title,
+  subtitle,
+}: {
+  tag: string
+  title: string
+  subtitle?: string
+}) {
+  return (
+    <div className="text-center mb-10">
+      <span className="inline-block bg-noue-rose-light text-noue-rose text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+        {tag}
+      </span>
+      <h2 className="section-title">{title}</h2>
+      {subtitle && (
+        <p
+          className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm sm:text-base"
+          dangerouslySetInnerHTML={{ __html: subtitle }}
+        />
+      )}
+    </div>
+  )
+}
+
 export function ProductsSection() {
   return (
-    <section className="bg-noue-cream py-16 px-4">
+    <section className="bg-noue-cream py-16 px-4 space-y-20">
       <div className="noue-container">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <span className="inline-block bg-noue-rose-light text-noue-rose text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
-            Mês das Mães
-          </span>
-          <h2 className="section-title">Kits Presentes Especiais</h2>
-          <p className="text-muted-foreground mt-3 max-w-xl mx-auto text-sm sm:text-base">
-            Presentes pensados com carinho para celebrar a mãe com o melhor em beleza e cuidados.
-            <br />
-            <strong className="text-noue-rose">Oferta exclusiva por tempo limitado.</strong>
-          </p>
+        {/* ── Kits Destaque ── */}
+        <SectionHeader
+          tag="Mês das Mães"
+          title="Kits Presentes Especiais"
+          subtitle='Presenteie com o melhor da Nouê.<br/><strong class="text-noue-rose">Oferta exclusiva por tempo limitado.</strong>'
+        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {KITS_DESTAQUE.map((product) => (
+            <ProductCard key={product.sku} product={product} />
+          ))}
         </div>
+      </div>
 
-        {/* Grid */}
+      {/* ── Mais Vendidos ── */}
+      <div className="noue-container">
+        <SectionHeader
+          tag="Mais Vendidos"
+          title="Produtos Favoritos das Clientes"
+          subtitle="Os campeões de venda da Nouê, agora com preço especial para o Mês das Mães."
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PRODUCTS.map((product) => (
+          {PRODUCTS_MAIS_VENDIDOS.map((product) => (
             <ProductCard key={product.sku} product={product} />
           ))}
         </div>
