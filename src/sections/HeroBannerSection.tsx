@@ -1,6 +1,5 @@
-// Substitua os placeholders pelos paths reais das imagens do banner quando disponíveis
-const BANNER_DESKTOP = '/images/banner-mes-das-maes-desktop.jpg'
-const BANNER_MOBILE = '/images/banner-mes-das-maes-mobile.jpg'
+const BANNER_DESKTOP = 'https://cdn.shopify.com/s/files/1/0579/3546/2464/files/Banner_02_Desk_MAES26.png?v=1777402037'
+const BANNER_MOBILE = 'https://cdn.shopify.com/s/files/1/0579/3546/2464/files/Banner_02_Mobile_MAES26.png?v=1777402037'
 
 export function HeroBannerSection() {
   return (
